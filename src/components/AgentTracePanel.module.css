@@ -7,9 +7,10 @@
   position: relative;
   transition: width var(--transition);
   border-left: 1px solid var(--border);
+  height: 100%;
 }
 
-.panelOpen  { width: 360px; }
+.panelOpen  { width: 420px; }
 .panelClosed { width: 36px; }
 
 .toggleBtn {
@@ -43,24 +44,27 @@
   flex-direction: column;
   overflow: hidden;
   font-family: 'JetBrains Mono', monospace;
+  height: 100%;
 }
 
 /* ── Panel Header ─────────────────────────────────────────── */
 .panelHeader {
-  padding: 12px 16px;
-  border-bottom: 1px solid rgba(0,255,159,0.15);
+  padding: 16px;
+  border-bottom: 1px solid rgba(0,255,159,0.2);
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-shrink: 0;
+  background: rgba(0,0,0,0.2);
 }
 
 .panelTitle {
-  font-size: 0.8rem;
-  font-weight: 700;
+  font-size: 0.85rem;
+  font-weight: 800;
   color: var(--trace-text);
   letter-spacing: 0.08em;
   text-transform: uppercase;
+  filter: drop-shadow(0 0 8px rgba(0,255,159,0.4));
 }
 
 .panelSubtitle {
@@ -76,48 +80,107 @@
   line-height: 1.6;
 }
 
-/* ── Entries ──────────────────────────────────────────────── */
+/* ── Entries Sequence with Neon Node Lines ────────────────── */
 .entries {
   flex: 1;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  padding: 12px 16px;
+  gap: 0;
 }
 
-.entry {
-  border-bottom: 1px solid rgba(0,255,159,0.08);
-  animation: fadeIn 0.3s ease;
+.entryWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.entryMain {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.nodeColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 28px;
+  flex-shrink: 0;
+}
+
+.nodeCircle {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #000000;
+  border: 1px solid var(--trace-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  box-shadow: 0 0 10px rgba(0,255,159,0.4);
+  z-index: 2;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.neonTrack {
+  width: 2px;
+  flex: 1;
+  background: rgba(255,255,255,0.06);
+  margin: 4px 0;
+  position: relative;
+}
+
+.neonGlowLine {
+  width: 100%;
+  background: linear-gradient(180deg, var(--trace-text), #00A86B);
+  box-shadow: 0 0 8px var(--trace-text);
+  border-radius: 1px;
+}
+
+.entryContent {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .entryHeader {
   width: 100%;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   padding: 8px 12px;
-  background: transparent;
-  border: none;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   text-align: left;
-  transition: background var(--transition);
-  font-family: 'JetBrains Mono', monospace;
+  transition: background var(--transition), border-color var(--transition);
+  font-family: inherit;
+  margin-top: 4px;
 }
 
-.entryHeader:hover { background: rgba(0,255,159,0.05); }
+.entryHeader:hover {
+  background: rgba(0,255,159,0.06);
+  border-color: rgba(0,255,159,0.2);
+}
 
 .stepIndex {
   font-size: 0.65rem;
   color: var(--trace-dim);
-  min-width: 20px;
+  font-weight: 700;
 }
 
-.stepIcon { font-size: 0.9rem; }
-
 .stepName {
-  font-size: 0.72rem;
-  color: var(--trace-text);
-  font-weight: 600;
+  font-size: 0.75rem;
+  color: var(--text-primary);
+  font-weight: 700;
   flex: 1;
   white-space: nowrap;
   overflow: hidden;
@@ -125,13 +188,13 @@
 }
 
 .stepAgent {
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   color: var(--trace-dim);
   white-space: nowrap;
 }
 
 .stepDuration {
-  font-size: 0.62rem;
+  font-size: 0.65rem;
   color: var(--warn-orange);
   white-space: nowrap;
 }
@@ -143,25 +206,30 @@
 
 /* ── Entry Body ───────────────────────────────────────────── */
 .entryBody {
-  padding: 8px 12px 12px;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  background: rgba(0,255,159,0.02);
-  border-top: 1px solid rgba(0,255,159,0.06);
+  gap: 8px;
+  background: rgba(0,0,0,0.3);
+  border: 1px solid rgba(0,255,159,0.1);
+  border-top: none;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  margin-top: -2px;
+  overflow: hidden;
 }
 
 .row {
   display: flex;
-  gap: 6px;
+  gap: 8px;
   font-size: 0.7rem;
   align-items: flex-start;
 }
 
 .label {
   color: var(--trace-dim);
-  min-width: 60px;
+  min-width: 65px;
   flex-shrink: 0;
+  font-weight: 600;
 }
 
 .value {
@@ -191,17 +259,140 @@
   border-radius: 3px;
   overflow: hidden;
   vertical-align: middle;
-  margin-right: 4px;
+  margin-right: 6px;
 }
 
 .confFill {
   height: 100%;
   border-radius: 3px;
-  transition: width 0.5s ease;
+  display: block;
 }
 
 .confNum {
   font-size: 0.68rem;
   color: var(--text-secondary);
   vertical-align: middle;
+}
+
+/* ── Minimalist Interactive Discovery Map ────────────────── */
+.mapContainer {
+  margin-top: 12px;
+  background: #06090E;
+  border: 1px solid rgba(0,255,159,0.15);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.mapHeader {
+  padding: 8px 12px;
+  background: rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mapTitle {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--trace-text);
+  letter-spacing: 0.05em;
+}
+
+.mapSub {
+  font-size: 0.6rem;
+  color: var(--trace-dim);
+}
+
+.mapCanvas {
+  height: 160px;
+  position: relative;
+  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
+.sectorLabel {
+  position: absolute;
+  font-size: 0.62rem;
+  color: rgba(255,255,255,0.3);
+  font-weight: 700;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.sectorDot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+}
+
+.candidateBeacon {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 5;
+}
+
+.beaconCore {
+  position: absolute;
+  inset: 2px;
+  border-radius: 50%;
+  background: var(--trace-text);
+  box-shadow: 0 0 8px var(--trace-text);
+  z-index: 2;
+}
+
+.beaconRipple {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--trace-text);
+  opacity: 0.6;
+  animation: beaconPulse 2s infinite cubic-bezier(0.1, 0.8, 0.3, 1);
+}
+
+@keyframes beaconPulse {
+  0% { transform: scale(0.4); opacity: 1; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.beaconTooltip {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.85);
+  border: 1px solid var(--trace-dim);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.55rem;
+  color: #FFFFFF;
+  white-space: nowrap;
+  pointer-events: none;
+  margin-bottom: 2px;
+}
+
+@keyframes growDown {
+  from { height: 0; }
+  to { height: 100%; }
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes beaconEnter {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
 }

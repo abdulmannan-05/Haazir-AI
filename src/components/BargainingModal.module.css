@@ -2,7 +2,9 @@
 
 .overlay {
   position: fixed; inset: 0;
-  background: rgba(0,0,0,0.75);
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   display: flex; align-items: center; justify-content: center;
   z-index: 1000;
   animation: fadeIn 0.2s ease;
@@ -13,48 +15,140 @@
   background: var(--bg-surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  width: 100%; max-width: 480px;
-  max-height: 85vh;
+  width: 100%; max-width: 520px;
+  max-height: 88vh;
   overflow-y: auto;
   animation: fadeIn 0.3s ease;
 }
 
 .header {
   display: flex; align-items: center; justify-content: space-between;
-  padding: 16px;
+  padding: 16px 20px;
   border-bottom: 1px solid var(--border);
 }
 
-.title { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
+.title { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
 
 .closeBtn {
   background: none; border: none; cursor: pointer;
-  color: var(--text-secondary); font-size: 1rem;
+  color: var(--text-secondary); font-size: 1.1rem;
   padding: 4px; border-radius: 4px;
   transition: color var(--transition);
 }
 .closeBtn:hover { color: var(--crisis-red); }
 
-.priceRow {
-  display: flex; align-items: center; justify-content: center; gap: 16px;
-  padding: 16px;
-  background: var(--bg-elevated);
+/* ── Visual Tug-of-War Track ───────────────────────────────── */
+.tugContainer {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.4);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.priceBox { text-align: center; }
-.priceLabel { display: block; font-size: 0.68rem; color: var(--text-muted); margin-bottom: 4px; }
-.priceVal   { font-size: 1rem; font-weight: 700; color: var(--text-primary); }
-.agreedPrice { color: var(--green); }
+.tugLabels {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  position: relative;
+}
 
-.arrow { font-size: 1.4rem; color: var(--text-muted); }
+.labelUser, .labelProvider, .labelDeal {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
 
+.labelUser { text-align: left; }
+.labelProvider { text-align: right; }
+.labelDeal {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  transition: opacity 0.5s ease;
+}
+
+.labelSub { font-size: 0.65rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+.labelVal { font-size: 0.85rem; font-weight: 700; color: var(--text-secondary); }
+
+.labelSubDeal { font-size: 0.7rem; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; filter: drop-shadow(0 0 4px rgba(37,211,102,0.4)); }
+.labelValDeal { font-size: 1.2rem; font-weight: 800; color: #FFFFFF; filter: drop-shadow(0 0 8px rgba(255,255,255,0.6)); }
+
+.trackWrapper {
+  position: relative;
+  height: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.trackBg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+}
+
+.trackFillGreen {
+  height: 100%;
+  background: linear-gradient(90deg, rgba(37,211,102,0.2), var(--green));
+  box-shadow: 0 0 8px var(--green);
+}
+
+.trackFillRed {
+  height: 100%;
+  background: linear-gradient(270deg, rgba(255,59,48,0.2), var(--crisis-red));
+  box-shadow: 0 0 8px var(--crisis-red);
+  margin-left: auto;
+}
+
+.thumbDot {
+  position: absolute;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.thumbInner {
+  width: 14px;
+  height: 14px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 12px #FFFFFF, 0 0 20px var(--green);
+  z-index: 2;
+}
+
+.thumbPulse {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  background: var(--green);
+  opacity: 0.4;
+  animation: pulseRing 1.5s infinite ease-out;
+}
+
+@keyframes pulseRing {
+  0% { transform: scale(0.8); opacity: 0.6; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ── Transcript area ───────────────────────────────────────── */
 .transcript {
-  padding: 16px;
+  padding: 20px;
   display: flex; flex-direction: column; gap: 12px;
-  min-height: 100px;
+  min-height: 120px;
 }
 
-.line { display: flex; flex-direction: column; gap: 4px; animation: fadeIn 0.3s ease; }
+.line { display: flex; flex-direction: column; gap: 4px; }
 
 .lineUser  { align-items: flex-end; }
 .lineProvider { align-items: flex-start; }
@@ -62,15 +156,17 @@
 .lineFrom { font-size: 0.68rem; color: var(--text-muted); }
 
 .lineText {
-  max-width: 85%;
-  padding: 8px 12px;
+  max-width: 88%;
+  padding: 10px 14px;
   border-radius: var(--radius-md);
-  font-size: 0.82rem; line-height: 1.5;
+  font-size: 0.85rem; line-height: 1.5;
   color: var(--text-primary);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.08);
 }
 
-.lineUser .lineText  { background: var(--user-bubble); border-bottom-right-radius: 4px; }
-.lineProvider .lineText { background: var(--bot-bubble); border-bottom-left-radius: 4px; }
+.lineUser .lineText  { background: rgba(0, 92, 75, 0.6); border-bottom-right-radius: 4px; }
+.lineProvider .lineText { background: rgba(255, 255, 255, 0.05); border-bottom-left-radius: 4px; }
 
 .typing {
   display: flex; gap: 4px; align-items: center;
@@ -83,29 +179,31 @@
 .typing span:nth-child(2) { animation-delay: 0.2s; }
 .typing span:nth-child(3) { animation-delay: 0.4s; }
 
+/* ── Outcome ───────────────────────────────────────────────── */
 .outcome {
-  margin: 0 16px 16px;
-  padding: 12px;
+  margin: 0 20px 20px;
+  padding: 16px;
+  background: rgba(0,0,0,0.3);
   border: 1px solid;
   border-radius: var(--radius-md);
-  animation: fadeIn 0.3s ease;
 }
-.outcome p { font-weight: 600; margin-bottom: 12px; }
+.outcome p { font-weight: 600; margin-bottom: 12px; font-size: 0.95rem; }
 
-.outcomeActions { display: flex; gap: 8px; }
+.outcomeActions { display: flex; gap: 10px; }
 
 .acceptBtn {
-  flex: 1; padding: 10px;
+  flex: 1; padding: 12px;
   background: var(--green); border: none; border-radius: var(--radius-md);
-  color: #000; font-weight: 700; font-size: 0.82rem; cursor: pointer;
-  font-family: inherit; transition: background var(--transition);
+  color: #000; font-weight: 700; font-size: 0.85rem; cursor: pointer;
+  font-family: inherit; transition: background var(--transition), box-shadow var(--transition);
+  box-shadow: 0 0 12px rgba(37,211,102,0.3);
 }
-.acceptBtn:hover { background: var(--green-dark); color: white; }
+.acceptBtn:hover { background: var(--green-dark); color: white; box-shadow: 0 0 20px rgba(37,211,102,0.6); }
 
 .cancelBtn {
-  padding: 10px 16px; background: none;
+  padding: 12px 20px; background: none;
   border: 1px solid var(--border); border-radius: var(--radius-md);
   color: var(--text-secondary); cursor: pointer; font-family: inherit;
-  transition: border-color var(--transition);
+  transition: border-color var(--transition), color var(--transition);
 }
 .cancelBtn:hover { border-color: var(--crisis-red); color: var(--crisis-red); }

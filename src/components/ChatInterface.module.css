@@ -5,6 +5,7 @@
   flex-direction: column;
   height: 100%;
   background: var(--chat-bg);
+  position: relative;
 }
 
 /* ── Header ─────────────────────────────────────────────────── */
@@ -163,6 +164,10 @@
 .botBubble {
   background: var(--bot-bubble);
   border-bottom-left-radius: 4px;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 0 16px rgba(37, 211, 102, 0.25);
 }
 
 .bubbleText {
@@ -173,12 +178,23 @@
   word-break: break-word;
 }
 
+.timestampRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  margin-top: 4px;
+}
+
 .timestamp {
-  display: block;
   font-size: 0.68rem;
   color: var(--text-muted);
-  margin-top: 4px;
-  text-align: right;
+}
+
+.blueTicks {
+  color: #34B7F1;
+  filter: drop-shadow(0 0 2px rgba(52, 183, 241, 0.4));
+  flex-shrink: 0;
 }
 
 /* ── Typing indicator ───────────────────────────────────────── */
@@ -295,4 +311,13 @@
 
 .sendBtnCrisis:hover:not(:disabled) {
   background: #cc2020 !important;
+}
+
+.frostEnter {
+  animation: frostScaleUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes frostScaleUp {
+  from { opacity: 0; transform: scale(0.92); filter: blur(4px); }
+  to { opacity: 1; transform: scale(1); filter: blur(0); }
 }

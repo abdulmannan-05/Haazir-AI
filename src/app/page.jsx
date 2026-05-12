@@ -446,14 +446,42 @@ export default function Home() {
   return (
     <div className={`${styles.root} ${crisisActive ? styles.rootCrisis : ""}`}>
 
-      {/* ── App Header ─────────────────────────────────────── */}
+      {/* ── Portaled overlays (position:fixed/absolute — never affect layout flow) ── */}
+      <CrisisAlert
+        active={crisisActive}
+        safetyTip={safetyTip}
+        crisisType={crisisType}
+        emergencyLine={emergencyLine}
+        onDismiss={() => setCrisisActive(false)}
+      />
+
+      <BargainingModal
+        bargainResult={bargainResult}
+        onAccept={handleBargainAccept}
+        onClose={() => setBargainResult(null)}
+      />
+
+      {crisisActive && (
+        <div className={styles.emergencyOverlay}>
+          <div className={styles.emergencyIconWrapper}>
+            <span style={{ fontSize: "1.3rem" }}>🛡️</span>
+          </div>
+          <div className={styles.emergencyContent}>
+            <span className={styles.emergencyTitle}>🚨 SAFETY ACTION REQUIRED</span>
+            <span className={styles.emergencyDesc}>
+              High-priority response protocol engaged. Emergency trace loops isolated.
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* ── App Header (flex-shrink: 0) ──────────────────────── */}
       <header className={`${styles.appHeader} ${crisisActive ? styles.headerCrisis : ""}`}>
         <div className={styles.logo}>
           <span className={styles.logoIcon}>🤖</span>
           <span className={styles.logoText}>HaazirAI</span>
         </div>
 
-        {/* Pipeline state indicator */}
         <span className={styles.stateIndicator} style={{ color: stateLabel.color }}>
           {stateLabel.text}
         </span>
@@ -475,23 +503,7 @@ export default function Home() {
         </div>
       </header>
 
-      {/* ── Crisis Alert ───────────────────────────────────── */}
-      <CrisisAlert
-        active={crisisActive}
-        safetyTip={safetyTip}
-        crisisType={crisisType}
-        emergencyLine={emergencyLine}
-        onDismiss={() => setCrisisActive(false)}
-      />
-
-      {/* ── Bargaining Modal ───────────────────────────────── */}
-      <BargainingModal
-        bargainResult={bargainResult}
-        onAccept={handleBargainAccept}
-        onClose={() => setBargainResult(null)}
-      />
-
-      {/* ── Main layout ────────────────────────────────────── */}
+      {/* ── Main layout (flex: 1, fills all remaining height) ── */}
       <main className={styles.main}>
         <div className={`${styles.chatArea} ${crisisActive ? styles.chatCrisis : ""}`}>
           <ChatInterface

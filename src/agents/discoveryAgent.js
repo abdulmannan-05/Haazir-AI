@@ -52,6 +52,7 @@ export function runDiscoveryAgent(intent) {
     duration_ms: duration,
     reasoning: `Queried mockProviders DB for category "${intent.service_type}". Returned ${withDistance.length} candidates with simulated distance.`,
     confidence: 0.9,
+    candidates: withDistance,
   };
 
   return { providers: withDistance, trace };

@@ -1,41 +1,44 @@
 "use client";
 
-// ============================================================
-// ChatInterface.jsx — WhatsApp-style chat window
-// ============================================================
-
 import { useState, useRef, useEffect } from "react";
 import styles from "./ChatInterface.module.css";
 
-/**
- * Renders a single chat bubble.
- * @param {{ role: "user"|"bot", content: string|React.ReactNode, type: string }} msg
- */
+function DoubleTickIcon() {
+  return (
+    <svg className={styles.blueTicks} viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M18 6L7 17l-5-5" />
+      <path d="M22 10l-7.5 7.5L13 16" />
+    </svg>
+  );
+}
+
 function ChatBubble({ msg }) {
   const isUser = msg.role === "user";
+  const hasUrduScript = typeof msg.content === "string" && /[\u0600-\u06FF]/.test(msg.content);
+
   return (
-    <div className={`${styles.bubbleWrapper} ${isUser ? styles.userWrapper : styles.botWrapper}`}>
-      {!isUser && (
-        <div className={styles.avatar}>H</div>
-      )}
+    <div className={`${styles.bubbleWrapper} ${isUser ? styles.userWrapper : styles.botWrapper} ${styles.frostEnter}`}>
+      {!isUser && <div className={styles.avatar}>H</div>}
       <div className={`${styles.bubble} ${isUser ? styles.userBubble : styles.botBubble}`}>
         {typeof msg.content === "string" ? (
-          <p className={styles.bubbleText}>{msg.content}</p>
+          <p className={`${styles.bubbleText} ${hasUrduScript ? "urdu-text" : ""}`}>
+            {msg.content}
+          </p>
         ) : (
           msg.content
         )}
-        <span className={styles.timestamp}>{msg.time}</span>
+        <div className={styles.timestampRow}>
+          <span className={styles.timestamp}>{msg.time}</span>
+          {!isUser && <DoubleTickIcon />}
+        </div>
       </div>
     </div>
   );
 }
 
-/**
- * Typing indicator ("HaazirAI is thinking...")
- */
 function TypingIndicator() {
   return (
-    <div className={`${styles.bubbleWrapper} ${styles.botWrapper}`}>
+    <div className={`${styles.bubbleWrapper} ${styles.botWrapper} ${styles.frostEnter}`}>
       <div className={styles.avatar}>H</div>
       <div className={`${styles.bubble} ${styles.botBubble} ${styles.typingBubble}`}>
         <span className={styles.dot} />
@@ -70,7 +73,6 @@ export default function ChatInterface({ messages, isTyping, onSend, disabled, is
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={`${styles.header} ${isCrisis ? styles.headerCrisis : ""}`}>
         <div className={`${styles.headerAvatar} ${isCrisis ? styles.avatarCrisis : ""}`}>H</div>
         <div className={styles.headerInfo}>
@@ -81,10 +83,9 @@ export default function ChatInterface({ messages, isTyping, onSend, disabled, is
         </div>
       </div>
 
-      {/* Messages */}
       <div className={styles.messages}>
         {messages.length === 0 && (
-          <div className={styles.emptyState}>
+          <div className={`${styles.emptyState} ${styles.frostEnter}`}>
             <p className={styles.emptyEmoji}>👋</p>
             <p className={styles.emptyTitle}>Assalam o Alaikum!</p>
             <p className={styles.emptySubtitle}>
@@ -116,7 +117,6 @@ export default function ChatInterface({ messages, isTyping, onSend, disabled, is
         <div ref={bottomRef} />
       </div>
 
-      {/* Input Bar */}
       <div className={`${styles.inputBar} ${isCrisis ? styles.inputBarCrisis : ""}`}>
         <textarea
           id="chat-input"
