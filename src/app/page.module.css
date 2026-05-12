@@ -1,0 +1,132 @@
+/* page.module.css */
+
+.root {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: var(--bg-primary);
+  overflow: hidden;
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.appHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 20px;
+  background: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logoIcon { font-size: 24px; }
+
+.logoText {
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--green), var(--info-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tagline {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+/* Pipeline state indicator */
+.stateIndicator {
+  font-size: 0.75rem;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  background: rgba(255,255,255,0.04);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* Reset button */
+.resetBtn {
+  padding: 4px 10px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.72rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+  white-space: nowrap;
+}
+.resetBtn:hover {
+  border-color: var(--crisis-red);
+  color: var(--crisis-red);
+  background: rgba(255,59,48,0.08);
+}
+
+.headerBadges {
+  display: flex;
+  gap: 6px;
+  margin-left: auto;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ── Main Layout ──────────────────────────────────────────── */
+.main {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.chatArea {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: box-shadow 0.4s ease;
+}
+
+/* ── Crisis Mode States ──────────────────────────────────── */
+
+.rootCrisis {
+  --chat-bg: #0d0000;
+}
+
+.headerCrisis {
+  background: linear-gradient(90deg, #1a0000, #0d0000);
+  border-bottom-color: rgba(255,59,48,0.3);
+}
+
+.chatCrisis {
+  box-shadow: inset 0 0 60px rgba(255, 59, 48, 0.06);
+}
+
+.badgeCrisisActive {
+  background: rgba(255,59,48,0.2) !important;
+  border-color: var(--crisis-red) !important;
+  color: var(--crisis-red) !important;
+  animation: pulse 1.5s infinite;
+}

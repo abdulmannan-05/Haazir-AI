@@ -1,0 +1,130 @@
+/* ConfirmationPrompt.module.css */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--green-dark);
+  border-radius: var(--radius-lg);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: fadeIn 0.3s ease;
+}
+
+.question {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Provider quick-confirm buttons ──────────────────────────── */
+.providerBtns {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.providerBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-family: inherit;
+  transition: border-color var(--transition), background var(--transition);
+  width: 100%;
+}
+
+.providerBtn:hover {
+  border-color: var(--green);
+  background: rgba(37,211,102,0.06);
+}
+
+.providerBtnTop {
+  border-color: var(--green-dark);
+}
+
+.providerBtnRank {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--green);
+  background: rgba(37,211,102,0.12);
+  padding: 1px 6px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.providerBtnName {
+  flex: 1;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.providerBtnPrice {
+  font-size: 0.72rem;
+  color: var(--green);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/* ── Hint text ───────────────────────────────────────────────── */
+.hint {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  padding: 8px 10px;
+  background: rgba(255,255,255,0.02);
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--border);
+}
+
+.hint strong {
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Action row ──────────────────────────────────────────────── */
+.actions {
+  display: flex;
+  gap: 8px;
+}
+
+.bargainBtn {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(255,159,10,0.1);
+  border: 1px solid var(--warn-orange);
+  border-radius: var(--radius-md);
+  color: var(--warn-orange);
+  font-weight: 600;
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition);
+}
+
+.bargainBtn:hover {
+  background: rgba(255,159,10,0.2);
+}
+
+.cancelBtn {
+  padding: 8px 14px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.cancelBtn:hover {
+  border-color: var(--crisis-red);
+  color: var(--crisis-red);
+}

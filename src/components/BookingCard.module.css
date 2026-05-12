@@ -1,0 +1,131 @@
+/* BookingCard.module.css */
+
+.card {
+  background: linear-gradient(145deg, #0a2e1a, #0d3321);
+  border: 1px solid var(--green-dark);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  font-size: 0.85rem;
+  animation: fadeIn 0.4s ease;
+  min-width: 260px;
+}
+
+.crisisCard {
+  background: linear-gradient(145deg, #2e0000, #3d0000);
+  border-color: var(--crisis-red);
+}
+
+/* ── Header ─────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(37,211,102,0.12);
+  border-bottom: 1px solid rgba(37,211,102,0.2);
+}
+
+.crisisCard .header {
+  background: rgba(255,59,48,0.15);
+  border-color: rgba(255,59,48,0.3);
+}
+
+.headerIcon { font-size: 1.6rem; }
+
+.headerTitle {
+  font-weight: 700;
+  color: var(--green);
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+}
+
+.crisisCard .headerTitle { color: var(--crisis-red); }
+
+.headerSub {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}
+
+/* ── Booking ID ─────────────────────────────────────────────── */
+.bookingId {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: rgba(0,0,0,0.2);
+}
+
+.idLabel {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.idValue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.crisisCard .idValue { color: var(--crisis-red); }
+
+.divider {
+  height: 1px;
+  background: rgba(255,255,255,0.05);
+}
+
+/* ── Details ────────────────────────────────────────────────── */
+.details {
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detailIcon { font-size: 0.9rem; width: 20px; text-align: center; }
+
+.detailLabel {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  min-width: 70px;
+}
+
+.detailValue {
+  font-size: 0.8rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+/* ── Status ─────────────────────────────────────────────────── */
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+}
+
+.statusDot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+.statusText {
+  font-size: 0.72rem;
+  color: var(--green);
+}
+
+.reminderNote {
+  padding: 8px 16px 12px;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+}

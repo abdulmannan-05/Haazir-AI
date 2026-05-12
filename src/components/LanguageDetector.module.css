@@ -1,0 +1,36 @@
+/* LanguageDetector.module.css */
+
+.badge {
+  display: inline-flex; align-items: center;
+  padding: 2px 8px;
+  border-radius: 20px;
+  font-size: 0.68rem; font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.romanurdu {
+  background: rgba(37,211,102,0.1);
+  border-color: var(--green-dark);
+  color: var(--green);
+}
+
+.urdu {
+  background: rgba(0,122,255,0.1);
+  border-color: var(--info-blue);
+  color: var(--info-blue);
+}
+
+.english {
+  background: var(--bg-elevated);
+  border-color: var(--border);
+  color: var(--text-secondary);
+}
+
+.mixed {
+  background: rgba(255,159,10,0.1);
+  border-color: var(--warn-orange);
+  color: var(--warn-orange);
+}

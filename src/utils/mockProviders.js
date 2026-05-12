@@ -1,0 +1,133 @@
+// ============================================================
+// mockProviders.js — Seeded provider database for HaazirAI
+// ============================================================
+
+export const mockProviders = [
+  {
+    id: "P001",
+    name: "Ali AC Services",
+    category: "AC Technician",
+    area: "G-13",
+    city: "Islamabad",
+    lat: 33.6938,
+    lng: 73.0652,
+    rating: 4.7,
+    completed_jobs: 230,
+    phone: "+92-300-1234567",
+    base_price_pkr: { min: 1500, max: 3000 },
+    verified: true,
+    available_slots: ["Today 2:00 PM", "Today 4:00 PM", "Tomorrow 10:00 AM"],
+    languages: ["Urdu", "English"],
+  },
+  {
+    id: "P002",
+    name: "Ustad Rafiq Electric",
+    category: "Electrician",
+    area: "G-11",
+    city: "Islamabad",
+    lat: 33.6901,
+    lng: 73.0511,
+    rating: 4.5,
+    completed_jobs: 180,
+    phone: "+92-301-9876543",
+    base_price_pkr: { min: 1000, max: 2500 },
+    verified: true,
+    available_slots: ["Today 3:00 PM", "Tomorrow 9:00 AM"],
+    languages: ["Urdu"],
+  },
+  {
+    id: "P003",
+    name: "Master Plumbers G-Sector",
+    category: "Plumber",
+    area: "G-10",
+    city: "Islamabad",
+    lat: 33.685,
+    lng: 73.048,
+    rating: 4.3,
+    completed_jobs: 95,
+    phone: "+92-302-5551234",
+    base_price_pkr: { min: 800, max: 2000 },
+    verified: false,
+    available_slots: ["TODAY NOW", "Today 1:00 PM"],
+    languages: ["Urdu", "Punjabi"],
+  },
+  {
+    id: "P004",
+    name: "Zainab Beauty at Home",
+    category: "Beautician",
+    area: "F-10",
+    city: "Islamabad",
+    lat: 33.71,
+    lng: 73.032,
+    rating: 4.9,
+    completed_jobs: 312,
+    phone: "+92-303-7778888",
+    base_price_pkr: { min: 2000, max: 5000 },
+    verified: true,
+    available_slots: ["Tomorrow 11:00 AM", "Tomorrow 2:00 PM"],
+    languages: ["Urdu", "English"],
+  },
+  {
+    id: "P005",
+    name: "Sir Kamran Home Tutor",
+    category: "Tutor",
+    area: "I-8",
+    city: "Islamabad",
+    lat: 33.67,
+    lng: 73.085,
+    rating: 4.6,
+    completed_jobs: 145,
+    phone: "+92-304-3334455",
+    base_price_pkr: { min: 500, max: 1500 },
+    verified: true,
+    available_slots: ["Today 5:00 PM", "Today 7:00 PM", "Tomorrow 4:00 PM"],
+    languages: ["Urdu", "English"],
+  },
+  {
+    id: "P006",
+    name: "Quick Fix Appliances",
+    category: "AC Technician",
+    area: "G-15",
+    city: "Islamabad",
+    lat: 33.66,
+    lng: 73.07,
+    rating: 4.1,
+    completed_jobs: 67,
+    phone: "+92-305-6667788",
+    base_price_pkr: { min: 1200, max: 2800 },
+    verified: false,
+    available_slots: ["Tomorrow 12:00 PM"],
+    languages: ["Urdu"],
+  },
+];
+
+// Maps service category → trigger keywords (Roman Urdu + English)
+export const serviceCategories = {
+  "AC Technician": [
+    "AC", "air conditioner", "AC wala", "ac wala", "cooling",
+    "thanda nahi ho raha", "AC kharab", "ac kharab", "ac technician",
+  ],
+  Plumber: [
+    "plumber", "pipe", "paani", "leakage", "tap", "bathroom",
+    "toilet", "naali", "nali", "water", "leak",
+  ],
+  Electrician: [
+    "electrician", "bijli", "bijli wala", "wiring", "short circuit",
+    "switch", "fan nahi chal raha", "light", "socket", "bijli band",
+  ],
+  Beautician: [
+    "beauty", "beautician", "makeup", "facial", "waxing",
+    "salon", "bridal", "mehndi", "eyebrow",
+  ],
+  Tutor: [
+    "tutor", "teacher", "padhana", "math", "maths", "science",
+    "english", "homework", "padhai", "tuition",
+  ],
+};
+
+// Crisis / emergency trigger keywords
+export const crisisKeywords = [
+  "pipe burst", "paani aa raha", "flood", "bijli short", "short circuit",
+  "aag", "fire", "smoke", "gas leak", "emergency", "jaldi", "foran",
+  "abhi abhi", "urgent", "help", "bachao", "khatarnak", "nali band",
+];

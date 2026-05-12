@@ -1,0 +1,69 @@
+/* ProviderCard.module.css */
+
+.card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 14px;
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  position: relative;
+  animation: fadeIn 0.3s ease;
+}
+
+.card:hover {
+  border-color: var(--green-dark);
+  background: rgba(37,211,102,0.04);
+  transform: translateY(-1px);
+}
+
+.topPick { border-color: var(--green); background: rgba(37,211,102,0.06); }
+.selected { border-color: var(--info-blue); background: rgba(0,122,255,0.06); }
+
+.rankBadge {
+  position: absolute; top: 8px; right: 10px;
+  font-size: 0.65rem; font-weight: 700;
+  color: var(--green); background: rgba(37,211,102,0.12);
+  padding: 2px 7px; border-radius: 10px;
+}
+
+.providerInfo { margin-bottom: 10px; }
+
+.nameRow { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+
+.name { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); }
+
+.verified { font-size: 0.65rem; color: var(--info-blue); background: rgba(0,122,255,0.1); padding: 1px 6px; border-radius: 8px; }
+
+.stars { display: inline-flex; align-items: center; gap: 1px; }
+.starFilled { color: #FFD60A; font-size: 0.85rem; }
+.starEmpty  { color: var(--text-muted); font-size: 0.85rem; }
+.ratingNum  { font-size: 0.75rem; color: var(--text-secondary); margin-left: 4px; }
+
+.meta { font-size: 0.72rem; color: var(--text-muted); margin-top: 4px; }
+
+.priceSlots { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; gap: 8px; }
+
+.price { font-size: 0.78rem; font-weight: 600; color: var(--green); }
+
+.slots { display: flex; flex-direction: column; gap: 3px; align-items: flex-end; }
+
+.slot { font-size: 0.65rem; color: var(--text-secondary); background: var(--bg-surface); padding: 2px 7px; border-radius: 8px; white-space: nowrap; }
+
+.slotNow { color: var(--green); background: rgba(37,211,102,0.1); border: 1px solid rgba(37,211,102,0.3); }
+
+.scoreRow { display: flex; align-items: center; gap: 6px; }
+.scoreLabel { font-size: 0.65rem; color: var(--text-muted); white-space: nowrap; }
+
+.scoreBar { flex: 1; height: 4px; background: var(--bg-surface); border-radius: 2px; overflow: hidden; }
+.scoreFill { height: 100%; background: linear-gradient(90deg, var(--green-dark), var(--green)); border-radius: 2px; transition: width 0.8s ease; }
+.scoreNum  { font-size: 0.68rem; color: var(--green); font-weight: 600; min-width: 24px; text-align: right; }
+
+.bookBtn {
+  width: 100%; margin-top: 10px; padding: 8px;
+  background: var(--green); border: none; border-radius: var(--radius-md);
+  color: #000; font-weight: 700; font-size: 0.82rem; cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+  font-family: inherit;
+}
+.bookBtn:hover { background: var(--green-dark); color: white; transform: scale(1.01); }

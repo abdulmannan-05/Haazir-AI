@@ -1,0 +1,354 @@
+/* CrisisStatusCard.module.css */
+
+/* ── Card shell ──────────────────────────────────────────────── */
+.card {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  animation: fadeIn 0.4s ease;
+  border: 1px solid;
+  font-size: 0.85rem;
+  min-width: 280px;
+}
+
+.cardCritical {
+  background: linear-gradient(145deg, #1a0000, #2d0000);
+  border-color: var(--crisis-red);
+}
+
+.cardHigh {
+  background: linear-gradient(145deg, #1a0a00, #2a1000);
+  border-color: #FF6B35;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  background: rgba(255, 59, 48, 0.15);
+  border-bottom: 1px solid rgba(255, 59, 48, 0.25);
+}
+
+.headerLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.headerIcon { font-size: 1.8rem; flex-shrink: 0; }
+
+.headerTitle {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--crisis-red);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.headerSub {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+/* ── Severity badge ──────────────────────────────────────────── */
+.severityBadge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badgeCritical { background: rgba(255,59,48,0.25); color: #FF6B6B; border: 1px solid #FF3B30; }
+.badgeHigh     { background: rgba(255,107,53,0.2);  color: #FF9E7A; border: 1px solid #FF6B35; }
+.badgeMedium   { background: rgba(255,159,10,0.2);  color: #FFB84D; border: 1px solid var(--warn-orange); }
+
+/* ── ETA Counter ─────────────────────────────────────────────── */
+.eta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.etaLabel { font-size: 0.62rem; color: var(--text-muted); }
+.etaValue {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--warn-orange);
+}
+
+/* ── Safety Banner ───────────────────────────────────────────── */
+.safetyBanner {
+  padding: 10px 16px;
+  background: rgba(255, 200, 0, 0.07);
+  border-bottom: 1px solid rgba(255, 200, 0, 0.12);
+}
+
+.safetyText {
+  font-size: 0.78rem;
+  color: #FFD700;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+/* ── Helpline ────────────────────────────────────────────────── */
+.helplineRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  background: rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.helplineLabel {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.helplineBtn {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #00CFFF;
+  background: rgba(0,207,255,0.1);
+  border: 1px solid rgba(0,207,255,0.3);
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background var(--transition);
+  white-space: nowrap;
+}
+
+.helplineBtn:hover {
+  background: rgba(0,207,255,0.2);
+}
+
+/* ── Provider Strip ──────────────────────────────────────────── */
+.providerStrip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  gap: 8px;
+}
+
+.providerLeft { display: flex; align-items: center; gap: 10px; }
+
+.providerIcon { font-size: 1.4rem; flex-shrink: 0; }
+
+.providerName {
+  font-weight: 700;
+  color: var(--text-primary);
+  font-size: 0.85rem;
+}
+
+.providerMeta {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.nowTag {
+  color: var(--green);
+  font-weight: 600;
+}
+
+.providerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+.providerPhone {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.urgentFlag {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--crisis-red);
+  background: rgba(255,59,48,0.15);
+  padding: 2px 7px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,59,48,0.4);
+  letter-spacing: 0.05em;
+  animation: pulse 1.2s infinite;
+}
+
+/* ── Crisis Timeline ─────────────────────────────────────────── */
+.timelineSection {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.timelineTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.timeline { display: flex; flex-direction: column; gap: 6px; }
+
+.timelineStep {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 6px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s;
+}
+
+.stepDone    { background: rgba(37,211,102,0.06); }
+.stepActive  { background: rgba(255,59,48,0.1); }
+.stepPending { background: transparent; opacity: 0.4; }
+
+.stepAnimate {
+  animation: fadeIn 0.4s ease;
+}
+
+.stepIconWrap {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stepIcon { font-size: 1rem; z-index: 1; }
+
+.stepPulse {
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid var(--crisis-red);
+  animation: pulse 1s infinite;
+}
+
+.stepBody { flex: 1; }
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 2px;
+}
+
+.stepLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stepDone .stepLabel    { color: var(--green); }
+.stepActive .stepLabel  { color: var(--crisis-red); }
+
+.stepDuration {
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  font-family: 'JetBrains Mono', monospace;
+  white-space: nowrap;
+}
+
+.stepDetail {
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* ── Protocol List ───────────────────────────────────────────── */
+.protocol {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+
+.protocolTitle {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #FFD700;
+  margin-bottom: 8px;
+}
+
+.protocolList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0;
+}
+
+.protocolItem {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  line-height: 1.4;
+  counter-increment: protocol-counter;
+}
+
+.protocolItem::before {
+  content: counter(protocol-counter) ".";
+  color: var(--crisis-red);
+  font-weight: 700;
+  font-size: 0.72rem;
+  min-width: 14px;
+  flex-shrink: 0;
+}
+
+.protocolList { counter-reset: protocol-counter; }
+
+/* ── Booking strip ───────────────────────────────────────────── */
+.bookingStrip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background: rgba(37,211,102,0.08);
+  border-top: 1px solid rgba(37,211,102,0.15);
+}
+
+.bookingIcon { font-size: 1rem; }
+
+.bookingId {
+  flex: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--green);
+  font-weight: 600;
+}
+
+.bookingStatus {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: var(--green);
+  background: rgba(37,211,102,0.15);
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid rgba(37,211,102,0.3);
+  letter-spacing: 0.05em;
+}

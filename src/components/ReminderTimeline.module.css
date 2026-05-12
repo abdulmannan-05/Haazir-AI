@@ -1,0 +1,216 @@
+/* ReminderTimeline.module.css */
+
+.container {
+  padding: 12px;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  animation: fadeIn 0.4s ease;
+}
+
+.title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+/* ── Connector ───────────────────────────────────────────────── */
+.connector {
+  position: absolute;
+  left: 15px;
+  top: 32px;
+  width: 2px;
+  height: calc(100% + 4px);
+  background: var(--border);
+  transition: background 0.3s ease;
+}
+
+.connectorActive {
+  background: var(--green-dark);
+}
+
+/* ── Dot ─────────────────────────────────────────────────────── */
+.dot {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+
+.dotScheduled {
+  background: rgba(37,211,102,0.15);
+  border: 2px solid var(--green);
+}
+
+.dotConfirmed {
+  background: rgba(37,211,102,0.25);
+  border: 2px solid var(--green);
+  box-shadow: 0 0 10px rgba(37,211,102,0.3);
+}
+
+.dotPending {
+  background: var(--bg-surface);
+  border: 2px solid var(--border);
+  opacity: 0.6;
+}
+
+/* ── Step Info ───────────────────────────────────────────────── */
+.stepInfo {
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  flex: 1;
+}
+
+.stepHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.stepLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.stepMsg {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+/* ── Status badges ───────────────────────────────────────────── */
+.stepStatus {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 1px 6px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+.statusScheduled {
+  color: var(--green);
+  background: rgba(37,211,102,0.1);
+}
+
+.statusConfirmed {
+  color: #00CFFF;
+  background: rgba(0,207,255,0.1);
+}
+
+.statusPending {
+  color: var(--text-muted);
+  background: var(--bg-surface);
+}
+
+/* ── Action Button ───────────────────────────────────────────── */
+.actionBtn {
+  margin-top: 6px;
+  align-self: flex-start;
+  padding: 6px 14px;
+  background: var(--green);
+  border: none;
+  border-radius: var(--radius-md);
+  color: #000;
+  font-weight: 700;
+  font-size: 0.75rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background var(--transition), transform var(--transition), opacity var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.actionBtn:hover:not(.actionBtnDisabled) {
+  background: var(--green-dark);
+  color: white;
+  transform: scale(1.02);
+}
+
+.actionBtnDisabled {
+  background: var(--bg-surface) !important;
+  color: var(--text-muted) !important;
+  cursor: not-allowed !important;
+  border: 1px solid var(--border);
+  opacity: 0.6;
+}
+
+.lockIcon {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+
+/* ── Confirmed tag ───────────────────────────────────────────── */
+.confirmedTag {
+  margin-top: 4px;
+  font-size: 0.68rem;
+  color: #00CFFF;
+  font-weight: 600;
+  animation: fadeIn 0.3s ease;
+}
+
+/* ── Rating prompt ───────────────────────────────────────────── */
+.ratingPrompt {
+  margin-top: 14px;
+  padding: 12px;
+  background: rgba(37,211,102,0.06);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(37,211,102,0.15);
+  animation: fadeIn 0.4s ease;
+}
+
+.ratingTitle {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.ratingStars {
+  display: flex;
+  gap: 6px;
+}
+
+.ratingStar {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  color: var(--text-muted);
+  transition: color var(--transition), transform var(--transition);
+  padding: 0;
+  line-height: 1;
+}
+
+.ratingStar:hover {
+  color: #FFD60A;
+  transform: scale(1.2);
+}

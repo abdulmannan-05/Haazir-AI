@@ -1,0 +1,207 @@
+/* AgentTracePanel.module.css */
+
+.panel {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  transition: width var(--transition);
+  border-left: 1px solid var(--border);
+}
+
+.panelOpen  { width: 360px; }
+.panelClosed { width: 36px; }
+
+.toggleBtn {
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  height: 48px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 6px 0 0 6px;
+  cursor: pointer;
+  color: var(--trace-text);
+  font-size: 0.7rem;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background var(--transition);
+}
+
+.toggleBtn:hover { background: var(--trace-dim); }
+
+.inner {
+  width: 100%;
+  background: var(--trace-bg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* ── Panel Header ─────────────────────────────────────────── */
+.panelHeader {
+  padding: 12px 16px;
+  border-bottom: 1px solid rgba(0,255,159,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+}
+
+.panelTitle {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--trace-text);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.panelSubtitle {
+  font-size: 0.7rem;
+  color: var(--trace-dim);
+}
+
+/* ── Empty ────────────────────────────────────────────────── */
+.empty {
+  padding: 24px 16px;
+  color: var(--trace-dim);
+  font-size: 0.75rem;
+  line-height: 1.6;
+}
+
+/* ── Entries ──────────────────────────────────────────────── */
+.entries {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.entry {
+  border-bottom: 1px solid rgba(0,255,159,0.08);
+  animation: fadeIn 0.3s ease;
+}
+
+.entryHeader {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background var(--transition);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.entryHeader:hover { background: rgba(0,255,159,0.05); }
+
+.stepIndex {
+  font-size: 0.65rem;
+  color: var(--trace-dim);
+  min-width: 20px;
+}
+
+.stepIcon { font-size: 0.9rem; }
+
+.stepName {
+  font-size: 0.72rem;
+  color: var(--trace-text);
+  font-weight: 600;
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.stepAgent {
+  font-size: 0.62rem;
+  color: var(--trace-dim);
+  white-space: nowrap;
+}
+
+.stepDuration {
+  font-size: 0.62rem;
+  color: var(--warn-orange);
+  white-space: nowrap;
+}
+
+.chevron {
+  font-size: 0.6rem;
+  color: var(--trace-dim);
+}
+
+/* ── Entry Body ───────────────────────────────────────────── */
+.entryBody {
+  padding: 8px 12px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(0,255,159,0.02);
+  border-top: 1px solid rgba(0,255,159,0.06);
+}
+
+.row {
+  display: flex;
+  gap: 6px;
+  font-size: 0.7rem;
+  align-items: flex-start;
+}
+
+.label {
+  color: var(--trace-dim);
+  min-width: 60px;
+  flex-shrink: 0;
+}
+
+.value {
+  color: var(--text-secondary);
+  line-height: 1.4;
+  word-break: break-word;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.toolBadge {
+  background: rgba(0,255,159,0.1);
+  border: 1px solid var(--trace-dim);
+  color: var(--trace-text);
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 0.62rem;
+}
+
+/* ── Confidence bar ──────────────────────────────────────── */
+.confBar {
+  display: inline-block;
+  width: 80px;
+  height: 6px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  overflow: hidden;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+.confFill {
+  height: 100%;
+  border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+.confNum {
+  font-size: 0.68rem;
+  color: var(--text-secondary);
+  vertical-align: middle;
+}
